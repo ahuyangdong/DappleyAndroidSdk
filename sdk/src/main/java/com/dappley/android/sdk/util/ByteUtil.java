@@ -1,9 +1,12 @@
 package com.dappley.android.sdk.util;
 
+import com.google.protobuf.ByteString;
+
 /**
  * Provides several methods about byte calculate.
  */
 public class ByteUtil {
+    public static final ByteString EMPTY_BYTE_STRING = ByteString.copyFrom(new byte[]{});
 
     /**
      * Combine two byte arrays into one.

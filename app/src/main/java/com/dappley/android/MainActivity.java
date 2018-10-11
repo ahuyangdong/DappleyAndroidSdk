@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.btn_send_transaction)
     void sendTransaction() {
         try {
-            TransactionProto.Transaction.Builder transactionBuilder = TransactionProto.Transaction.newBuilder();
-            DappleyClient.sendTransaction(transactionBuilder);
+            TransactionProto.Transaction transaction = TransactionProto.Transaction.newBuilder().build();
+            DappleyClient.sendTransaction(transaction);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

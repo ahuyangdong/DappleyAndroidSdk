@@ -1,7 +1,10 @@
 package com.dappley.android.sdk.chain;
 
+import com.dappley.android.sdk.crypto.ShaDigest;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.TransactionProto;
+import com.dappley.android.sdk.util.Base58;
+import com.dappley.android.sdk.util.ByteUtil;
 import com.google.protobuf.ByteString;
 
 import java.util.List;
@@ -11,12 +14,12 @@ import java.util.List;
  */
 public class TransactionManager {
 
-    public static TransactionProto.Transaction.Builder newTransactionBuilder(String address, int amount){
+    public static TransactionProto.Transaction newTransaction(String address, int amount) {
         List<RpcProto.UTXO> spendableList = UtxoManager.getSpendableUtxos(address, amount);
-        return newTransactionBuilder(address, amount);
+        return newTransaction(spendableList, amount);
     }
 
-    public static TransactionProto.Transaction.Builder newTransactionBuilder(List<RpcProto.UTXO> utxos, int amount) {
+    public static TransactionProto.Transaction newTransaction(List<RpcProto.UTXO> utxos, int amount) {
         TransactionProto.Transaction.Builder builder = TransactionProto.Transaction.newBuilder();
         // TODO generate Id
 
@@ -28,7 +31,7 @@ public class TransactionManager {
 
         // TODO calculate tip count
         builder.setTip(0);
-        return builder;
+        return builder.build();
     }
 
     private static int buildVin(TransactionProto.Transaction.Builder builder, List<RpcProto.UTXO> utxos) {
@@ -64,5 +67,25 @@ public class TransactionManager {
         // TODO fill with 'from' pubKeyHash and change value
 
         builder.addVout(txOutputBuilder.build());
+    }
+
+    /**
+     * Generate ID of Transaction object
+     * <p>The ID is a ByteString object</p>
+     * @param transactionBuilder
+     * @return ByteString ID bytes
+     */
+    public static ByteString newId(TransactionProto.Transaction.Builder transactionBuilder) {
+        transactionBuilder.setID(ByteString.copyFrom(new byte[]{}));
+        TransactionProto.Transaction transaction = transactionBuilder.build();
+        byte[] txBytes = transaction.toByteArray();
+        byte[] sha256 = ShaDigest.sha256(txBytes);
+        return ByteString.copyFrom(sha256);
+    }
+
+    public static ByteString getTransactionPubKeyHash(String address) {
+        byte[] addrBytes = Base58.decode(address);
+        byte[] pubKeyHash = ByteUtil.slice(addrBytes, 1, addrBytes.length - 4);
+        return ByteString.copyFrom(pubKeyHash);
     }
 }

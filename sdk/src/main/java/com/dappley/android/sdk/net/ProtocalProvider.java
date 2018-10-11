@@ -35,7 +35,7 @@ public interface ProtocalProvider {
 
     void getBlocks() throws IllegalAccessException;
 
-    void sendTransaction(TransactionProto.Transaction.Builder transactionBuilder) throws IllegalAccessException;
+    void sendTransaction(TransactionProto.Transaction transaction) throws IllegalAccessException;
 
     /**
      * Define types of network protocal supported.

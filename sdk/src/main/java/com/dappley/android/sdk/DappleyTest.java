@@ -2,9 +2,11 @@ package com.dappley.android.sdk;
 
 import android.content.Context;
 
+import com.dappley.android.sdk.chain.BlockManager;
 import com.dappley.android.sdk.config.Configuration;
 import com.dappley.android.sdk.crypto.EcCipher;
 import com.dappley.android.sdk.crypto.KeyPairTool;
+import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.RpcServiceGrpc;
 import com.dappley.android.sdk.util.AddressUtil;
@@ -76,13 +78,15 @@ public class DappleyTest {
 
 //        BigInteger privateKey = new BigInteger("bb23d2ff19f5b16955e8a24dca34dd520980fe3bddca2b3e1b56663f0ec1aa7e", 16);
 //        ECKeyPair ecKeyPair = ECKeyPair.create(privateKey);
-        ECPublicKey publicKey = (ECPublicKey) keyPair.getPublic();
-        ECPrivateKey privateKey = (ECPrivateKey) keyPair.getPrivate();
-        String test = "this is original";
-        byte[] encoded = EcCipher.encrypt(test.getBytes("UTF-8"), publicKey);
-        System.out.println("test:" + test);
-        System.out.println("encoded:" + encoded);
+//        ECPublicKey publicKey = (ECPublicKey) keyPair.getPublic();
+//        ECPrivateKey privateKey = (ECPrivateKey) keyPair.getPrivate();
+//        String test = "this is original";
+//        byte[] encoded = EcCipher.encrypt(test.getBytes("UTF-8"), publicKey);
+//        System.out.println("test:" + test);
+//        System.out.println("encoded:" + encoded);
 
+        BlockProto.Block block = BlockManager.newGenesisBlock();
+        System.out.println(block.toString());
     }
 
     public static String testEncrypt() {
