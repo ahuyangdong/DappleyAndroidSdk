@@ -5599,6 +5599,41 @@ public final class RpcProto {
      * <code>optional uint64 blockHeight = 2;</code>
      */
     long getBlockHeight();
+
+    /**
+     * <pre>
+     * all producers' addresses
+     * </pre>
+     *
+     * <code>repeated string producers = 3;</code>
+     */
+    java.util.List<String>
+        getProducersList();
+    /**
+     * <pre>
+     * all producers' addresses
+     * </pre>
+     *
+     * <code>repeated string producers = 3;</code>
+     */
+    int getProducersCount();
+    /**
+     * <pre>
+     * all producers' addresses
+     * </pre>
+     *
+     * <code>repeated string producers = 3;</code>
+     */
+    java.lang.String getProducers(int index);
+    /**
+     * <pre>
+     * all producers' addresses
+     * </pre>
+     *
+     * <code>repeated string producers = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getProducersBytes(int index);
   }
   /**
    * Protobuf type {@code rpcpb.GetBlockchainInfoResponse}
@@ -5610,7 +5645,9 @@ public final class RpcProto {
       GetBlockchainInfoResponseOrBuilder {
     private GetBlockchainInfoResponse() {
       tailBlockHash_ = com.google.protobuf.ByteString.EMPTY;
+      producers_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
+    private int bitField0_;
     public static final int TAILBLOCKHASH_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString tailBlockHash_;
     /**
@@ -5660,6 +5697,126 @@ public final class RpcProto {
       blockHeight_ = 0L;
     }
 
+    public static final int PRODUCERS_FIELD_NUMBER = 3;
+    private com.google.protobuf.Internal.ProtobufList<String> producers_;
+    /**
+     * <pre>
+     * all producers' addresses
+     * </pre>
+     *
+     * <code>repeated string producers = 3;</code>
+     */
+    public java.util.List<String> getProducersList() {
+      return producers_;
+    }
+    /**
+     * <pre>
+     * all producers' addresses
+     * </pre>
+     *
+     * <code>repeated string producers = 3;</code>
+     */
+    public int getProducersCount() {
+      return producers_.size();
+    }
+    /**
+     * <pre>
+     * all producers' addresses
+     * </pre>
+     *
+     * <code>repeated string producers = 3;</code>
+     */
+    public java.lang.String getProducers(int index) {
+      return producers_.get(index);
+    }
+    /**
+     * <pre>
+     * all producers' addresses
+     * </pre>
+     *
+     * <code>repeated string producers = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getProducersBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          producers_.get(index));
+    }
+    private void ensureProducersIsMutable() {
+      if (!producers_.isModifiable()) {
+        producers_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(producers_);
+       }
+    }
+    /**
+     * <pre>
+     * all producers' addresses
+     * </pre>
+     *
+     * <code>repeated string producers = 3;</code>
+     */
+    private void setProducers(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureProducersIsMutable();
+      producers_.set(index, value);
+    }
+    /**
+     * <pre>
+     * all producers' addresses
+     * </pre>
+     *
+     * <code>repeated string producers = 3;</code>
+     */
+    private void addProducers(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureProducersIsMutable();
+      producers_.add(value);
+    }
+    /**
+     * <pre>
+     * all producers' addresses
+     * </pre>
+     *
+     * <code>repeated string producers = 3;</code>
+     */
+    private void addAllProducers(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureProducersIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, producers_);
+    }
+    /**
+     * <pre>
+     * all producers' addresses
+     * </pre>
+     *
+     * <code>repeated string producers = 3;</code>
+     */
+    private void clearProducers() {
+      producers_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <pre>
+     * all producers' addresses
+     * </pre>
+     *
+     * <code>repeated string producers = 3;</code>
+     */
+    private void addProducersBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureProducersIsMutable();
+      producers_.add(value.toStringUtf8());
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!tailBlockHash_.isEmpty()) {
@@ -5667,6 +5824,9 @@ public final class RpcProto {
       }
       if (blockHeight_ != 0L) {
         output.writeUInt64(2, blockHeight_);
+      }
+      for (int i = 0; i < producers_.size(); i++) {
+        output.writeString(3, producers_.get(i));
       }
     }
 
@@ -5682,6 +5842,15 @@ public final class RpcProto {
       if (blockHeight_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(2, blockHeight_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < producers_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(producers_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getProducersList().size();
       }
       memoizedSerializedSize = size;
       return size;
@@ -5815,6 +5984,114 @@ public final class RpcProto {
         return this;
       }
 
+      /**
+       * <pre>
+       * all producers' addresses
+       * </pre>
+       *
+       * <code>repeated string producers = 3;</code>
+       */
+      public java.util.List<String>
+          getProducersList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getProducersList());
+      }
+      /**
+       * <pre>
+       * all producers' addresses
+       * </pre>
+       *
+       * <code>repeated string producers = 3;</code>
+       */
+      public int getProducersCount() {
+        return instance.getProducersCount();
+      }
+      /**
+       * <pre>
+       * all producers' addresses
+       * </pre>
+       *
+       * <code>repeated string producers = 3;</code>
+       */
+      public java.lang.String getProducers(int index) {
+        return instance.getProducers(index);
+      }
+      /**
+       * <pre>
+       * all producers' addresses
+       * </pre>
+       *
+       * <code>repeated string producers = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getProducersBytes(int index) {
+        return instance.getProducersBytes(index);
+      }
+      /**
+       * <pre>
+       * all producers' addresses
+       * </pre>
+       *
+       * <code>repeated string producers = 3;</code>
+       */
+      public Builder setProducers(
+          int index, java.lang.String value) {
+        copyOnWrite();
+        instance.setProducers(index, value);
+        return this;
+      }
+      /**
+       * <pre>
+       * all producers' addresses
+       * </pre>
+       *
+       * <code>repeated string producers = 3;</code>
+       */
+      public Builder addProducers(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.addProducers(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * all producers' addresses
+       * </pre>
+       *
+       * <code>repeated string producers = 3;</code>
+       */
+      public Builder addAllProducers(
+          java.lang.Iterable<java.lang.String> values) {
+        copyOnWrite();
+        instance.addAllProducers(values);
+        return this;
+      }
+      /**
+       * <pre>
+       * all producers' addresses
+       * </pre>
+       *
+       * <code>repeated string producers = 3;</code>
+       */
+      public Builder clearProducers() {
+        copyOnWrite();
+        instance.clearProducers();
+        return this;
+      }
+      /**
+       * <pre>
+       * all producers' addresses
+       * </pre>
+       *
+       * <code>repeated string producers = 3;</code>
+       */
+      public Builder addProducersBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addProducersBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:rpcpb.GetBlockchainInfoResponse)
     }
     protected final Object dynamicMethod(
@@ -5828,6 +6105,7 @@ public final class RpcProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
+          producers_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -5840,8 +6118,10 @@ public final class RpcProto {
               other.tailBlockHash_ != com.google.protobuf.ByteString.EMPTY, other.tailBlockHash_);
           blockHeight_ = visitor.visitLong(blockHeight_ != 0L, blockHeight_,
               other.blockHeight_ != 0L, other.blockHeight_);
+          producers_= visitor.visitList(producers_, other.producers_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -5872,6 +6152,15 @@ public final class RpcProto {
                 case 16: {
 
                   blockHeight_ = input.readUInt64();
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+                  if (!producers_.isModifiable()) {
+                    producers_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(producers_);
+                  }
+                  producers_.add(s);
                   break;
                 }
               }
@@ -7928,6 +8217,32 @@ public final class RpcProto {
      * <code>repeated .rpcpb.UTXO utxos = 2;</code>
      */
     int getUtxosCount();
+
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    java.util.List<com.dappley.android.sdk.protobuf.BlockProto.BlockHeader> 
+        getBlockHeadersList();
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    com.dappley.android.sdk.protobuf.BlockProto.BlockHeader getBlockHeaders(int index);
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    int getBlockHeadersCount();
   }
   /**
    * Protobuf type {@code rpcpb.GetUTXOResponse}
@@ -7939,6 +8254,7 @@ public final class RpcProto {
       GetUTXOResponseOrBuilder {
     private GetUTXOResponse() {
       utxos_ = emptyProtobufList();
+      blockHeaders_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERRORCODE_FIELD_NUMBER = 1;
@@ -8084,6 +8400,182 @@ public final class RpcProto {
       utxos_.remove(index);
     }
 
+    public static final int BLOCKHEADERS_FIELD_NUMBER = 3;
+    private com.google.protobuf.Internal.ProtobufList<com.dappley.android.sdk.protobuf.BlockProto.BlockHeader> blockHeaders_;
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    public java.util.List<com.dappley.android.sdk.protobuf.BlockProto.BlockHeader> getBlockHeadersList() {
+      return blockHeaders_;
+    }
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    public java.util.List<? extends com.dappley.android.sdk.protobuf.BlockProto.BlockHeaderOrBuilder> 
+        getBlockHeadersOrBuilderList() {
+      return blockHeaders_;
+    }
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    public int getBlockHeadersCount() {
+      return blockHeaders_.size();
+    }
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    public com.dappley.android.sdk.protobuf.BlockProto.BlockHeader getBlockHeaders(int index) {
+      return blockHeaders_.get(index);
+    }
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    public com.dappley.android.sdk.protobuf.BlockProto.BlockHeaderOrBuilder getBlockHeadersOrBuilder(
+        int index) {
+      return blockHeaders_.get(index);
+    }
+    private void ensureBlockHeadersIsMutable() {
+      if (!blockHeaders_.isModifiable()) {
+        blockHeaders_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(blockHeaders_);
+       }
+    }
+
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    private void setBlockHeaders(
+        int index, com.dappley.android.sdk.protobuf.BlockProto.BlockHeader value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBlockHeadersIsMutable();
+      blockHeaders_.set(index, value);
+    }
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    private void setBlockHeaders(
+        int index, com.dappley.android.sdk.protobuf.BlockProto.BlockHeader.Builder builderForValue) {
+      ensureBlockHeadersIsMutable();
+      blockHeaders_.set(index, builderForValue.build());
+    }
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    private void addBlockHeaders(com.dappley.android.sdk.protobuf.BlockProto.BlockHeader value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBlockHeadersIsMutable();
+      blockHeaders_.add(value);
+    }
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    private void addBlockHeaders(
+        int index, com.dappley.android.sdk.protobuf.BlockProto.BlockHeader value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBlockHeadersIsMutable();
+      blockHeaders_.add(index, value);
+    }
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    private void addBlockHeaders(
+        com.dappley.android.sdk.protobuf.BlockProto.BlockHeader.Builder builderForValue) {
+      ensureBlockHeadersIsMutable();
+      blockHeaders_.add(builderForValue.build());
+    }
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    private void addBlockHeaders(
+        int index, com.dappley.android.sdk.protobuf.BlockProto.BlockHeader.Builder builderForValue) {
+      ensureBlockHeadersIsMutable();
+      blockHeaders_.add(index, builderForValue.build());
+    }
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    private void addAllBlockHeaders(
+        java.lang.Iterable<? extends com.dappley.android.sdk.protobuf.BlockProto.BlockHeader> values) {
+      ensureBlockHeadersIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, blockHeaders_);
+    }
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    private void clearBlockHeaders() {
+      blockHeaders_ = emptyProtobufList();
+    }
+    /**
+     * <pre>
+     *The latest block headers
+     * </pre>
+     *
+     * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+     */
+    private void removeBlockHeaders(int index) {
+      ensureBlockHeadersIsMutable();
+      blockHeaders_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (errorCode_ != 0) {
@@ -8091,6 +8583,9 @@ public final class RpcProto {
       }
       for (int i = 0; i < utxos_.size(); i++) {
         output.writeMessage(2, utxos_.get(i));
+      }
+      for (int i = 0; i < blockHeaders_.size(); i++) {
+        output.writeMessage(3, blockHeaders_.get(i));
       }
     }
 
@@ -8106,6 +8601,10 @@ public final class RpcProto {
       for (int i = 0; i < utxos_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, utxos_.get(i));
+      }
+      for (int i = 0; i < blockHeaders_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, blockHeaders_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -8313,6 +8812,151 @@ public final class RpcProto {
         return this;
       }
 
+      /**
+       * <pre>
+       *The latest block headers
+       * </pre>
+       *
+       * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+       */
+      public java.util.List<com.dappley.android.sdk.protobuf.BlockProto.BlockHeader> getBlockHeadersList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getBlockHeadersList());
+      }
+      /**
+       * <pre>
+       *The latest block headers
+       * </pre>
+       *
+       * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+       */
+      public int getBlockHeadersCount() {
+        return instance.getBlockHeadersCount();
+      }/**
+       * <pre>
+       *The latest block headers
+       * </pre>
+       *
+       * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+       */
+      public com.dappley.android.sdk.protobuf.BlockProto.BlockHeader getBlockHeaders(int index) {
+        return instance.getBlockHeaders(index);
+      }
+      /**
+       * <pre>
+       *The latest block headers
+       * </pre>
+       *
+       * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+       */
+      public Builder setBlockHeaders(
+          int index, com.dappley.android.sdk.protobuf.BlockProto.BlockHeader value) {
+        copyOnWrite();
+        instance.setBlockHeaders(index, value);
+        return this;
+      }
+      /**
+       * <pre>
+       *The latest block headers
+       * </pre>
+       *
+       * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+       */
+      public Builder setBlockHeaders(
+          int index, com.dappley.android.sdk.protobuf.BlockProto.BlockHeader.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBlockHeaders(index, builderForValue);
+        return this;
+      }
+      /**
+       * <pre>
+       *The latest block headers
+       * </pre>
+       *
+       * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+       */
+      public Builder addBlockHeaders(com.dappley.android.sdk.protobuf.BlockProto.BlockHeader value) {
+        copyOnWrite();
+        instance.addBlockHeaders(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *The latest block headers
+       * </pre>
+       *
+       * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+       */
+      public Builder addBlockHeaders(
+          int index, com.dappley.android.sdk.protobuf.BlockProto.BlockHeader value) {
+        copyOnWrite();
+        instance.addBlockHeaders(index, value);
+        return this;
+      }
+      /**
+       * <pre>
+       *The latest block headers
+       * </pre>
+       *
+       * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+       */
+      public Builder addBlockHeaders(
+          com.dappley.android.sdk.protobuf.BlockProto.BlockHeader.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBlockHeaders(builderForValue);
+        return this;
+      }
+      /**
+       * <pre>
+       *The latest block headers
+       * </pre>
+       *
+       * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+       */
+      public Builder addBlockHeaders(
+          int index, com.dappley.android.sdk.protobuf.BlockProto.BlockHeader.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBlockHeaders(index, builderForValue);
+        return this;
+      }
+      /**
+       * <pre>
+       *The latest block headers
+       * </pre>
+       *
+       * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+       */
+      public Builder addAllBlockHeaders(
+          java.lang.Iterable<? extends com.dappley.android.sdk.protobuf.BlockProto.BlockHeader> values) {
+        copyOnWrite();
+        instance.addAllBlockHeaders(values);
+        return this;
+      }
+      /**
+       * <pre>
+       *The latest block headers
+       * </pre>
+       *
+       * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+       */
+      public Builder clearBlockHeaders() {
+        copyOnWrite();
+        instance.clearBlockHeaders();
+        return this;
+      }
+      /**
+       * <pre>
+       *The latest block headers
+       * </pre>
+       *
+       * <code>repeated .corepb.BlockHeader blockHeaders = 3;</code>
+       */
+      public Builder removeBlockHeaders(int index) {
+        copyOnWrite();
+        instance.removeBlockHeaders(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:rpcpb.GetUTXOResponse)
     }
     protected final Object dynamicMethod(
@@ -8327,6 +8971,7 @@ public final class RpcProto {
         }
         case MAKE_IMMUTABLE: {
           utxos_.makeImmutable();
+          blockHeaders_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -8338,6 +8983,7 @@ public final class RpcProto {
           errorCode_ = visitor.visitInt(errorCode_ != 0, errorCode_,
               other.errorCode_ != 0, other.errorCode_);
           utxos_= visitor.visitList(utxos_, other.utxos_);
+          blockHeaders_= visitor.visitList(blockHeaders_, other.blockHeaders_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -8375,6 +9021,15 @@ public final class RpcProto {
                   }
                   utxos_.add(
                       input.readMessage(com.dappley.android.sdk.protobuf.RpcProto.UTXO.parser(), extensionRegistry));
+                  break;
+                }
+                case 26: {
+                  if (!blockHeaders_.isModifiable()) {
+                    blockHeaders_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(blockHeaders_);
+                  }
+                  blockHeaders_.add(
+                      input.readMessage(com.dappley.android.sdk.protobuf.BlockProto.BlockHeader.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -8922,12 +9577,12 @@ public final class RpcProto {
 
     /**
      * <pre>
-     * Query end block hash, default is empty bytes
+     * Max query block count
      * </pre>
      *
-     * <code>optional bytes stopBlockHash = 2;</code>
+     * <code>optional int32 maxCount = 2;</code>
      */
-    com.google.protobuf.ByteString getStopBlockHash();
+    int getMaxCount();
   }
   /**
    * Protobuf type {@code rpcpb.GetBlocksRequest}
@@ -8939,7 +9594,6 @@ public final class RpcProto {
       GetBlocksRequestOrBuilder {
     private GetBlocksRequest() {
       startBlockHashs_ = emptyProtobufList();
-      stopBlockHash_ = com.google.protobuf.ByteString.EMPTY;
     }
     private int bitField0_;
     public static final int STARTBLOCKHASHS_FIELD_NUMBER = 1;
@@ -9034,42 +9688,39 @@ public final class RpcProto {
       startBlockHashs_ = emptyProtobufList();
     }
 
-    public static final int STOPBLOCKHASH_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString stopBlockHash_;
+    public static final int MAXCOUNT_FIELD_NUMBER = 2;
+    private int maxCount_;
     /**
      * <pre>
-     * Query end block hash, default is empty bytes
+     * Max query block count
      * </pre>
      *
-     * <code>optional bytes stopBlockHash = 2;</code>
+     * <code>optional int32 maxCount = 2;</code>
      */
-    public com.google.protobuf.ByteString getStopBlockHash() {
-      return stopBlockHash_;
+    public int getMaxCount() {
+      return maxCount_;
     }
     /**
      * <pre>
-     * Query end block hash, default is empty bytes
+     * Max query block count
      * </pre>
      *
-     * <code>optional bytes stopBlockHash = 2;</code>
+     * <code>optional int32 maxCount = 2;</code>
      */
-    private void setStopBlockHash(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      stopBlockHash_ = value;
-    }
-    /**
-     * <pre>
-     * Query end block hash, default is empty bytes
-     * </pre>
-     *
-     * <code>optional bytes stopBlockHash = 2;</code>
-     */
-    private void clearStopBlockHash() {
+    private void setMaxCount(int value) {
       
-      stopBlockHash_ = getDefaultInstance().getStopBlockHash();
+      maxCount_ = value;
+    }
+    /**
+     * <pre>
+     * Max query block count
+     * </pre>
+     *
+     * <code>optional int32 maxCount = 2;</code>
+     */
+    private void clearMaxCount() {
+      
+      maxCount_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -9077,8 +9728,8 @@ public final class RpcProto {
       for (int i = 0; i < startBlockHashs_.size(); i++) {
         output.writeBytes(1, startBlockHashs_.get(i));
       }
-      if (!stopBlockHash_.isEmpty()) {
-        output.writeBytes(2, stopBlockHash_);
+      if (maxCount_ != 0) {
+        output.writeInt32(2, maxCount_);
       }
     }
 
@@ -9096,9 +9747,9 @@ public final class RpcProto {
         size += dataSize;
         size += 1 * getStartBlockHashsList().size();
       }
-      if (!stopBlockHash_.isEmpty()) {
+      if (maxCount_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, stopBlockHash_);
+          .computeInt32Size(2, maxCount_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -9271,36 +9922,36 @@ public final class RpcProto {
 
       /**
        * <pre>
-       * Query end block hash, default is empty bytes
+       * Max query block count
        * </pre>
        *
-       * <code>optional bytes stopBlockHash = 2;</code>
+       * <code>optional int32 maxCount = 2;</code>
        */
-      public com.google.protobuf.ByteString getStopBlockHash() {
-        return instance.getStopBlockHash();
+      public int getMaxCount() {
+        return instance.getMaxCount();
       }
       /**
        * <pre>
-       * Query end block hash, default is empty bytes
+       * Max query block count
        * </pre>
        *
-       * <code>optional bytes stopBlockHash = 2;</code>
+       * <code>optional int32 maxCount = 2;</code>
        */
-      public Builder setStopBlockHash(com.google.protobuf.ByteString value) {
+      public Builder setMaxCount(int value) {
         copyOnWrite();
-        instance.setStopBlockHash(value);
+        instance.setMaxCount(value);
         return this;
       }
       /**
        * <pre>
-       * Query end block hash, default is empty bytes
+       * Max query block count
        * </pre>
        *
-       * <code>optional bytes stopBlockHash = 2;</code>
+       * <code>optional int32 maxCount = 2;</code>
        */
-      public Builder clearStopBlockHash() {
+      public Builder clearMaxCount() {
         copyOnWrite();
-        instance.clearStopBlockHash();
+        instance.clearMaxCount();
         return this;
       }
 
@@ -9327,8 +9978,8 @@ public final class RpcProto {
           Visitor visitor = (Visitor) arg0;
           com.dappley.android.sdk.protobuf.RpcProto.GetBlocksRequest other = (com.dappley.android.sdk.protobuf.RpcProto.GetBlocksRequest) arg1;
           startBlockHashs_= visitor.visitList(startBlockHashs_, other.startBlockHashs_);
-          stopBlockHash_ = visitor.visitByteString(stopBlockHash_ != com.google.protobuf.ByteString.EMPTY, stopBlockHash_,
-              other.stopBlockHash_ != com.google.protobuf.ByteString.EMPTY, other.stopBlockHash_);
+          maxCount_ = visitor.visitInt(maxCount_ != 0, maxCount_,
+              other.maxCount_ != 0, other.maxCount_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -9362,9 +10013,9 @@ public final class RpcProto {
                   startBlockHashs_.add(input.readBytes());
                   break;
                 }
-                case 18: {
+                case 16: {
 
-                  stopBlockHash_ = input.readBytes();
+                  maxCount_ = input.readInt32();
                   break;
                 }
               }
@@ -9926,6 +10577,1324 @@ public final class RpcProto {
     private static volatile com.google.protobuf.Parser<GetBlocksResponse> PARSER;
 
     public static com.google.protobuf.Parser<GetBlocksResponse> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface GetBlockByHashRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetBlockByHashRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional bytes hash = 1;</code>
+     */
+    com.google.protobuf.ByteString getHash();
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetBlockByHashRequest}
+   */
+  public  static final class GetBlockByHashRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          GetBlockByHashRequest, GetBlockByHashRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetBlockByHashRequest)
+      GetBlockByHashRequestOrBuilder {
+    private GetBlockByHashRequest() {
+      hash_ = com.google.protobuf.ByteString.EMPTY;
+    }
+    public static final int HASH_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString hash_;
+    /**
+     * <code>optional bytes hash = 1;</code>
+     */
+    public com.google.protobuf.ByteString getHash() {
+      return hash_;
+    }
+    /**
+     * <code>optional bytes hash = 1;</code>
+     */
+    private void setHash(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      hash_ = value;
+    }
+    /**
+     * <code>optional bytes hash = 1;</code>
+     */
+    private void clearHash() {
+      
+      hash_ = getDefaultInstance().getHash();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!hash_.isEmpty()) {
+        output.writeBytes(1, hash_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!hash_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, hash_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code rpcpb.GetBlockByHashRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetBlockByHashRequest)
+        com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequestOrBuilder {
+      // Construct using com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional bytes hash = 1;</code>
+       */
+      public com.google.protobuf.ByteString getHash() {
+        return instance.getHash();
+      }
+      /**
+       * <code>optional bytes hash = 1;</code>
+       */
+      public Builder setHash(com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setHash(value);
+        return this;
+      }
+      /**
+       * <code>optional bytes hash = 1;</code>
+       */
+      public Builder clearHash() {
+        copyOnWrite();
+        instance.clearHash();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetBlockByHashRequest)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest other = (com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest) arg1;
+          hash_ = visitor.visitByteString(hash_ != com.google.protobuf.ByteString.EMPTY, hash_,
+              other.hash_ != com.google.protobuf.ByteString.EMPTY, other.hash_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+
+                  hash_ = input.readBytes();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetBlockByHashRequest)
+    private static final com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new GetBlockByHashRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<GetBlockByHashRequest> PARSER;
+
+    public static com.google.protobuf.Parser<GetBlockByHashRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface GetBlockByHashResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetBlockByHashResponse)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional uint32 errorCode = 1;</code>
+     */
+    int getErrorCode();
+
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    boolean hasBlock();
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    com.dappley.android.sdk.protobuf.BlockProto.Block getBlock();
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetBlockByHashResponse}
+   */
+  public  static final class GetBlockByHashResponse extends
+      com.google.protobuf.GeneratedMessageLite<
+          GetBlockByHashResponse, GetBlockByHashResponse.Builder> implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetBlockByHashResponse)
+      GetBlockByHashResponseOrBuilder {
+    private GetBlockByHashResponse() {
+    }
+    public static final int ERRORCODE_FIELD_NUMBER = 1;
+    private int errorCode_;
+    /**
+     * <code>optional uint32 errorCode = 1;</code>
+     */
+    public int getErrorCode() {
+      return errorCode_;
+    }
+    /**
+     * <code>optional uint32 errorCode = 1;</code>
+     */
+    private void setErrorCode(int value) {
+      
+      errorCode_ = value;
+    }
+    /**
+     * <code>optional uint32 errorCode = 1;</code>
+     */
+    private void clearErrorCode() {
+      
+      errorCode_ = 0;
+    }
+
+    public static final int BLOCK_FIELD_NUMBER = 2;
+    private com.dappley.android.sdk.protobuf.BlockProto.Block block_;
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    public boolean hasBlock() {
+      return block_ != null;
+    }
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    public com.dappley.android.sdk.protobuf.BlockProto.Block getBlock() {
+      return block_ == null ? com.dappley.android.sdk.protobuf.BlockProto.Block.getDefaultInstance() : block_;
+    }
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    private void setBlock(com.dappley.android.sdk.protobuf.BlockProto.Block value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      block_ = value;
+      
+      }
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    private void setBlock(
+        com.dappley.android.sdk.protobuf.BlockProto.Block.Builder builderForValue) {
+      block_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    private void mergeBlock(com.dappley.android.sdk.protobuf.BlockProto.Block value) {
+      if (block_ != null &&
+          block_ != com.dappley.android.sdk.protobuf.BlockProto.Block.getDefaultInstance()) {
+        block_ =
+          com.dappley.android.sdk.protobuf.BlockProto.Block.newBuilder(block_).mergeFrom(value).buildPartial();
+      } else {
+        block_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    private void clearBlock() {  block_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (errorCode_ != 0) {
+        output.writeUInt32(1, errorCode_);
+      }
+      if (block_ != null) {
+        output.writeMessage(2, getBlock());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (errorCode_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, errorCode_);
+      }
+      if (block_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getBlock());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code rpcpb.GetBlockByHashResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse, Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetBlockByHashResponse)
+        com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponseOrBuilder {
+      // Construct using com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional uint32 errorCode = 1;</code>
+       */
+      public int getErrorCode() {
+        return instance.getErrorCode();
+      }
+      /**
+       * <code>optional uint32 errorCode = 1;</code>
+       */
+      public Builder setErrorCode(int value) {
+        copyOnWrite();
+        instance.setErrorCode(value);
+        return this;
+      }
+      /**
+       * <code>optional uint32 errorCode = 1;</code>
+       */
+      public Builder clearErrorCode() {
+        copyOnWrite();
+        instance.clearErrorCode();
+        return this;
+      }
+
+      /**
+       * <code>optional .corepb.Block block = 2;</code>
+       */
+      public boolean hasBlock() {
+        return instance.hasBlock();
+      }
+      /**
+       * <code>optional .corepb.Block block = 2;</code>
+       */
+      public com.dappley.android.sdk.protobuf.BlockProto.Block getBlock() {
+        return instance.getBlock();
+      }
+      /**
+       * <code>optional .corepb.Block block = 2;</code>
+       */
+      public Builder setBlock(com.dappley.android.sdk.protobuf.BlockProto.Block value) {
+        copyOnWrite();
+        instance.setBlock(value);
+        return this;
+        }
+      /**
+       * <code>optional .corepb.Block block = 2;</code>
+       */
+      public Builder setBlock(
+          com.dappley.android.sdk.protobuf.BlockProto.Block.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBlock(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .corepb.Block block = 2;</code>
+       */
+      public Builder mergeBlock(com.dappley.android.sdk.protobuf.BlockProto.Block value) {
+        copyOnWrite();
+        instance.mergeBlock(value);
+        return this;
+      }
+      /**
+       * <code>optional .corepb.Block block = 2;</code>
+       */
+      public Builder clearBlock() {  copyOnWrite();
+        instance.clearBlock();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetBlockByHashResponse)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse other = (com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse) arg1;
+          errorCode_ = visitor.visitInt(errorCode_ != 0, errorCode_,
+              other.errorCode_ != 0, other.errorCode_);
+          block_ = visitor.visitMessage(block_, other.block_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  errorCode_ = input.readUInt32();
+                  break;
+                }
+                case 18: {
+                  com.dappley.android.sdk.protobuf.BlockProto.Block.Builder subBuilder = null;
+                  if (block_ != null) {
+                    subBuilder = block_.toBuilder();
+                  }
+                  block_ = input.readMessage(com.dappley.android.sdk.protobuf.BlockProto.Block.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(block_);
+                    block_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetBlockByHashResponse)
+    private static final com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new GetBlockByHashResponse();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<GetBlockByHashResponse> PARSER;
+
+    public static com.google.protobuf.Parser<GetBlockByHashResponse> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface GetBlockByHeightRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetBlockByHeightRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional uint64 height = 1;</code>
+     */
+    long getHeight();
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetBlockByHeightRequest}
+   */
+  public  static final class GetBlockByHeightRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          GetBlockByHeightRequest, GetBlockByHeightRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetBlockByHeightRequest)
+      GetBlockByHeightRequestOrBuilder {
+    private GetBlockByHeightRequest() {
+    }
+    public static final int HEIGHT_FIELD_NUMBER = 1;
+    private long height_;
+    /**
+     * <code>optional uint64 height = 1;</code>
+     */
+    public long getHeight() {
+      return height_;
+    }
+    /**
+     * <code>optional uint64 height = 1;</code>
+     */
+    private void setHeight(long value) {
+      
+      height_ = value;
+    }
+    /**
+     * <code>optional uint64 height = 1;</code>
+     */
+    private void clearHeight() {
+      
+      height_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (height_ != 0L) {
+        output.writeUInt64(1, height_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (height_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, height_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code rpcpb.GetBlockByHeightRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetBlockByHeightRequest)
+        com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequestOrBuilder {
+      // Construct using com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional uint64 height = 1;</code>
+       */
+      public long getHeight() {
+        return instance.getHeight();
+      }
+      /**
+       * <code>optional uint64 height = 1;</code>
+       */
+      public Builder setHeight(long value) {
+        copyOnWrite();
+        instance.setHeight(value);
+        return this;
+      }
+      /**
+       * <code>optional uint64 height = 1;</code>
+       */
+      public Builder clearHeight() {
+        copyOnWrite();
+        instance.clearHeight();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetBlockByHeightRequest)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest other = (com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest) arg1;
+          height_ = visitor.visitLong(height_ != 0L, height_,
+              other.height_ != 0L, other.height_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  height_ = input.readUInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetBlockByHeightRequest)
+    private static final com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new GetBlockByHeightRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<GetBlockByHeightRequest> PARSER;
+
+    public static com.google.protobuf.Parser<GetBlockByHeightRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface GetBlockByHeightResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetBlockByHeightResponse)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional uint32 errorCode = 1;</code>
+     */
+    int getErrorCode();
+
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    boolean hasBlock();
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    com.dappley.android.sdk.protobuf.BlockProto.Block getBlock();
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetBlockByHeightResponse}
+   */
+  public  static final class GetBlockByHeightResponse extends
+      com.google.protobuf.GeneratedMessageLite<
+          GetBlockByHeightResponse, GetBlockByHeightResponse.Builder> implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetBlockByHeightResponse)
+      GetBlockByHeightResponseOrBuilder {
+    private GetBlockByHeightResponse() {
+    }
+    public static final int ERRORCODE_FIELD_NUMBER = 1;
+    private int errorCode_;
+    /**
+     * <code>optional uint32 errorCode = 1;</code>
+     */
+    public int getErrorCode() {
+      return errorCode_;
+    }
+    /**
+     * <code>optional uint32 errorCode = 1;</code>
+     */
+    private void setErrorCode(int value) {
+      
+      errorCode_ = value;
+    }
+    /**
+     * <code>optional uint32 errorCode = 1;</code>
+     */
+    private void clearErrorCode() {
+      
+      errorCode_ = 0;
+    }
+
+    public static final int BLOCK_FIELD_NUMBER = 2;
+    private com.dappley.android.sdk.protobuf.BlockProto.Block block_;
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    public boolean hasBlock() {
+      return block_ != null;
+    }
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    public com.dappley.android.sdk.protobuf.BlockProto.Block getBlock() {
+      return block_ == null ? com.dappley.android.sdk.protobuf.BlockProto.Block.getDefaultInstance() : block_;
+    }
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    private void setBlock(com.dappley.android.sdk.protobuf.BlockProto.Block value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      block_ = value;
+      
+      }
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    private void setBlock(
+        com.dappley.android.sdk.protobuf.BlockProto.Block.Builder builderForValue) {
+      block_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    private void mergeBlock(com.dappley.android.sdk.protobuf.BlockProto.Block value) {
+      if (block_ != null &&
+          block_ != com.dappley.android.sdk.protobuf.BlockProto.Block.getDefaultInstance()) {
+        block_ =
+          com.dappley.android.sdk.protobuf.BlockProto.Block.newBuilder(block_).mergeFrom(value).buildPartial();
+      } else {
+        block_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .corepb.Block block = 2;</code>
+     */
+    private void clearBlock() {  block_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (errorCode_ != 0) {
+        output.writeUInt32(1, errorCode_);
+      }
+      if (block_ != null) {
+        output.writeMessage(2, getBlock());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (errorCode_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, errorCode_);
+      }
+      if (block_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getBlock());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code rpcpb.GetBlockByHeightResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse, Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetBlockByHeightResponse)
+        com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponseOrBuilder {
+      // Construct using com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional uint32 errorCode = 1;</code>
+       */
+      public int getErrorCode() {
+        return instance.getErrorCode();
+      }
+      /**
+       * <code>optional uint32 errorCode = 1;</code>
+       */
+      public Builder setErrorCode(int value) {
+        copyOnWrite();
+        instance.setErrorCode(value);
+        return this;
+      }
+      /**
+       * <code>optional uint32 errorCode = 1;</code>
+       */
+      public Builder clearErrorCode() {
+        copyOnWrite();
+        instance.clearErrorCode();
+        return this;
+      }
+
+      /**
+       * <code>optional .corepb.Block block = 2;</code>
+       */
+      public boolean hasBlock() {
+        return instance.hasBlock();
+      }
+      /**
+       * <code>optional .corepb.Block block = 2;</code>
+       */
+      public com.dappley.android.sdk.protobuf.BlockProto.Block getBlock() {
+        return instance.getBlock();
+      }
+      /**
+       * <code>optional .corepb.Block block = 2;</code>
+       */
+      public Builder setBlock(com.dappley.android.sdk.protobuf.BlockProto.Block value) {
+        copyOnWrite();
+        instance.setBlock(value);
+        return this;
+        }
+      /**
+       * <code>optional .corepb.Block block = 2;</code>
+       */
+      public Builder setBlock(
+          com.dappley.android.sdk.protobuf.BlockProto.Block.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBlock(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .corepb.Block block = 2;</code>
+       */
+      public Builder mergeBlock(com.dappley.android.sdk.protobuf.BlockProto.Block value) {
+        copyOnWrite();
+        instance.mergeBlock(value);
+        return this;
+      }
+      /**
+       * <code>optional .corepb.Block block = 2;</code>
+       */
+      public Builder clearBlock() {  copyOnWrite();
+        instance.clearBlock();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetBlockByHeightResponse)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse other = (com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse) arg1;
+          errorCode_ = visitor.visitInt(errorCode_ != 0, errorCode_,
+              other.errorCode_ != 0, other.errorCode_);
+          block_ = visitor.visitMessage(block_, other.block_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  errorCode_ = input.readUInt32();
+                  break;
+                }
+                case 18: {
+                  com.dappley.android.sdk.protobuf.BlockProto.Block.Builder subBuilder = null;
+                  if (block_ != null) {
+                    subBuilder = block_.toBuilder();
+                  }
+                  block_ = input.readMessage(com.dappley.android.sdk.protobuf.BlockProto.Block.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(block_);
+                    block_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetBlockByHeightResponse)
+    private static final com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new GetBlockByHeightResponse();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<GetBlockByHeightResponse> PARSER;
+
+    public static com.google.protobuf.Parser<GetBlockByHeightResponse> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

@@ -6,6 +6,7 @@ import com.dappley.android.sdk.chain.BlockManager;
 import com.dappley.android.sdk.config.Configuration;
 import com.dappley.android.sdk.crypto.EcCipher;
 import com.dappley.android.sdk.crypto.KeyPairTool;
+import com.dappley.android.sdk.db.BlockDB;
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.RpcServiceGrpc;
@@ -13,10 +14,18 @@ import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.Base64;
 import com.dappley.android.sdk.util.ByteUtil;
 import com.dappley.android.sdk.util.HashUtil;
+import com.google.protobuf.ByteString;
 
 import org.bouncycastle.crypto.generators.ECKeyPairGenerator;
-import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
+import org.bouncycastle.jce.ECNamedCurveTable;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.jce.spec.ECParameterSpec;
+import org.bouncycastle.jce.spec.ECPublicKeySpec;
+import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.util.encoders.Hex;
+import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
+import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
+import org.spongycastle.pqc.jcajce.provider.util.KeyUtil;
 import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.Keys;
 
@@ -25,13 +34,16 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.InvalidKeyException;
+import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.Signature;
 import java.security.interfaces.ECPrivateKey;
 import java.security.interfaces.ECPublicKey;
+import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -85,8 +97,51 @@ public class DappleyTest {
 //        System.out.println("test:" + test);
 //        System.out.println("encoded:" + encoded);
 
-        BlockProto.Block block = BlockManager.newGenesisBlock();
-        System.out.println(block.toString());
+
+//        ECParameterSpec ecParameters = ECNamedCurveTable.getParameterSpec("secp256k1");
+//        KeyFactory keyFactory = KeyFactory.getInstance("ECDSA", BouncyCastleProvider.PROVIDER_NAME);
+//        byte[] pubKey = publicKey.toByteArray();
+//        BigInteger x = new BigInteger(1, Arrays.copyOfRange(pubKey, 1, 33));
+//        BigInteger y = new BigInteger(1, Arrays.copyOfRange(pubKey, 33, 65));
+//
+//        ECPoint ecPoint = ecParameters.getCurve().createPoint(x, y);
+//        ECPublicKeySpec keySpec = new ECPublicKeySpec(ecPoint, ecParameters);
+//        BCECPrivateKey prk = (BCECPrivateKey) keyFactory.generatePrivate(keySpec);
+
+//        BlockProto.Block block = BlockManager.newGenesisBlock();
+//        System.out.println(block.toString());
+
+//        testRecovery();
+        ByteString bytes = ByteString.copyFromUtf8("hello");
+        System.out.println(bytes.toStringUtf8());
+    }
+
+    public static void testDB(Context context) {
+        BlockDB blockDB = new BlockDB(context);
+        blockDB.open();
+        BlockProto.BlockHeader blockHeader = BlockProto.BlockHeader.newBuilder().setHash(ByteString.copyFromUtf8("testblock")).build();
+        BlockProto.Block block = BlockProto.Block.newBuilder().setHeader(blockHeader).build();
+        boolean isSuccess = blockDB.save(block);
+        System.out.println(block);
+        System.out.println(isSuccess);
+
+        // read
+        block = blockDB.get("testblock");
+        System.out.println(block);
+    }
+
+    public static void testRecovery() {
+        BigInteger privateKey = new BigInteger("bb23d2ff19f5b16955e8a24dca34dd520980fe3bddca2b3e1b56663f0ec1aa7e", 16);
+        BigInteger publicKey = new BigInteger("5767188359795479736405662394620174832271978020098784807457600728164221489565479030464547807529865979388276872414794355820379785119919302677391625913455408", 16);
+        ECKeyPair ecKeyPair = ECKeyPair.create(privateKey);
+        System.out.println(ecKeyPair.getPublicKey());
+        BCECPublicKey prk = KeyPairTool.fromPubInteger(publicKey);
+        BCECPrivateKey prvk = KeyPairTool.fromPrivInteger(privateKey);
+        byte[] publicKeyBytes = prk.getQ().getEncoded(false);
+        BigInteger publicKeyValue =
+                new BigInteger(1, Arrays.copyOfRange(publicKeyBytes, 1, publicKeyBytes.length));
+        System.out.println(publicKeyValue);
+        System.out.println(prvk);
     }
 
     public static String testEncrypt() {

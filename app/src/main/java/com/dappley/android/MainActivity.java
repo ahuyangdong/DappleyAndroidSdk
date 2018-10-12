@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.dappley.android.sdk.DappleyClient;
+import com.dappley.android.sdk.DappleyTest;
 import com.dappley.android.sdk.net.ProtocalProvider;
 import com.dappley.android.sdk.protobuf.TransactionProto;
 
@@ -41,10 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_wallet)
     void createWallet() {
-        String address = DappleyClient.createWalletAddress();
-        tvContent.setText(address);
+//        String address = DappleyClient.createWalletAddress();
+//        tvContent.setText(address);
 //        String result = DappleyTest.testEncrypt();
 //        tvContent.setText(result);
+//        DappleyTest.testRecovery();
+        DappleyTest.testDB(this);
     }
 
     @OnClick(R.id.btn_version)

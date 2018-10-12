@@ -368,6 +368,68 @@ public final class RpcServiceGrpc {
      return getRpcGetBlocksMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest,
+      com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse> getRpcGetBlockByHashMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RpcGetBlockByHash",
+      requestType = com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest.class,
+      responseType = com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest,
+      com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse> getRpcGetBlockByHashMethod() {
+    io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest, com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse> getRpcGetBlockByHashMethod;
+    if ((getRpcGetBlockByHashMethod = RpcServiceGrpc.getRpcGetBlockByHashMethod) == null) {
+      synchronized (RpcServiceGrpc.class) {
+        if ((getRpcGetBlockByHashMethod = RpcServiceGrpc.getRpcGetBlockByHashMethod) == null) {
+          RpcServiceGrpc.getRpcGetBlockByHashMethod = getRpcGetBlockByHashMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest, com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "rpcpb.RpcService", "RpcGetBlockByHash"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse.getDefaultInstance()))
+                  .build();
+          }
+        }
+     }
+     return getRpcGetBlockByHashMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest,
+      com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse> getRpcGetBlockByHeightMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RpcGetBlockByHeight",
+      requestType = com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest.class,
+      responseType = com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest,
+      com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse> getRpcGetBlockByHeightMethod() {
+    io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest, com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse> getRpcGetBlockByHeightMethod;
+    if ((getRpcGetBlockByHeightMethod = RpcServiceGrpc.getRpcGetBlockByHeightMethod) == null) {
+      synchronized (RpcServiceGrpc.class) {
+        if ((getRpcGetBlockByHeightMethod = RpcServiceGrpc.getRpcGetBlockByHeightMethod) == null) {
+          RpcServiceGrpc.getRpcGetBlockByHeightMethod = getRpcGetBlockByHeightMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest, com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "rpcpb.RpcService", "RpcGetBlockByHeight"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse.getDefaultInstance()))
+                  .build();
+          }
+        }
+     }
+     return getRpcGetBlockByHeightMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.SendTransactionRequest,
       com.dappley.android.sdk.protobuf.RpcProto.SendTransactionResponse> getRpcSendTransactionMethod;
 
@@ -505,6 +567,20 @@ public final class RpcServiceGrpc {
 
     /**
      */
+    public void rpcGetBlockByHash(com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcGetBlockByHashMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void rpcGetBlockByHeight(com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcGetBlockByHeightMethod(), responseObserver);
+    }
+
+    /**
+     */
     public void rpcSendTransaction(com.dappley.android.sdk.protobuf.RpcProto.SendTransactionRequest request,
         io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.SendTransactionResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getRpcSendTransactionMethod(), responseObserver);
@@ -589,6 +665,20 @@ public final class RpcServiceGrpc {
                 com.dappley.android.sdk.protobuf.RpcProto.GetBlocksRequest,
                 com.dappley.android.sdk.protobuf.RpcProto.GetBlocksResponse>(
                   this, METHODID_RPC_GET_BLOCKS)))
+          .addMethod(
+            getRpcGetBlockByHashMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest,
+                com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse>(
+                  this, METHODID_RPC_GET_BLOCK_BY_HASH)))
+          .addMethod(
+            getRpcGetBlockByHeightMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest,
+                com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse>(
+                  this, METHODID_RPC_GET_BLOCK_BY_HEIGHT)))
           .addMethod(
             getRpcSendTransactionMethod(),
             asyncUnaryCall(
@@ -708,6 +798,22 @@ public final class RpcServiceGrpc {
 
     /**
      */
+    public void rpcGetBlockByHash(com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRpcGetBlockByHashMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void rpcGetBlockByHeight(com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRpcGetBlockByHeightMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
     public void rpcSendTransaction(com.dappley.android.sdk.protobuf.RpcProto.SendTransactionRequest request,
         io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.SendTransactionResponse> responseObserver) {
       asyncUnaryCall(
@@ -808,6 +914,20 @@ public final class RpcServiceGrpc {
     public com.dappley.android.sdk.protobuf.RpcProto.GetBlocksResponse rpcGetBlocks(com.dappley.android.sdk.protobuf.RpcProto.GetBlocksRequest request) {
       return blockingUnaryCall(
           getChannel(), getRpcGetBlocksMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse rpcGetBlockByHash(com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRpcGetBlockByHashMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse rpcGetBlockByHeight(com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRpcGetBlockByHeightMethod(), getCallOptions(), request);
     }
 
     /**
@@ -926,6 +1046,22 @@ public final class RpcServiceGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse> rpcGetBlockByHash(
+        com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRpcGetBlockByHashMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse> rpcGetBlockByHeight(
+        com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRpcGetBlockByHeightMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<com.dappley.android.sdk.protobuf.RpcProto.SendTransactionResponse> rpcSendTransaction(
         com.dappley.android.sdk.protobuf.RpcProto.SendTransactionRequest request) {
       return futureUnaryCall(
@@ -944,7 +1080,9 @@ public final class RpcServiceGrpc {
   private static final int METHODID_RPC_GET_BLOCKCHAIN_INFO = 8;
   private static final int METHODID_RPC_GET_UTXO = 9;
   private static final int METHODID_RPC_GET_BLOCKS = 10;
-  private static final int METHODID_RPC_SEND_TRANSACTION = 11;
+  private static final int METHODID_RPC_GET_BLOCK_BY_HASH = 11;
+  private static final int METHODID_RPC_GET_BLOCK_BY_HEIGHT = 12;
+  private static final int METHODID_RPC_SEND_TRANSACTION = 13;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1007,6 +1145,14 @@ public final class RpcServiceGrpc {
           serviceImpl.rpcGetBlocks((com.dappley.android.sdk.protobuf.RpcProto.GetBlocksRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetBlocksResponse>) responseObserver);
           break;
+        case METHODID_RPC_GET_BLOCK_BY_HASH:
+          serviceImpl.rpcGetBlockByHash((com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHashResponse>) responseObserver);
+          break;
+        case METHODID_RPC_GET_BLOCK_BY_HEIGHT:
+          serviceImpl.rpcGetBlockByHeight((com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetBlockByHeightResponse>) responseObserver);
+          break;
         case METHODID_RPC_SEND_TRANSACTION:
           serviceImpl.rpcSendTransaction((com.dappley.android.sdk.protobuf.RpcProto.SendTransactionRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.SendTransactionResponse>) responseObserver);
@@ -1047,6 +1193,8 @@ public final class RpcServiceGrpc {
               .addMethod(getRpcGetBlockchainInfoMethod())
               .addMethod(getRpcGetUTXOMethod())
               .addMethod(getRpcGetBlocksMethod())
+              .addMethod(getRpcGetBlockByHashMethod())
+              .addMethod(getRpcGetBlockByHeightMethod())
               .addMethod(getRpcSendTransactionMethod())
               .build();
         }

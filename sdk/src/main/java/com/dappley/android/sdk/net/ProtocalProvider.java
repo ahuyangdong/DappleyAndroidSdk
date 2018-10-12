@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.TransactionProto;
+import com.google.protobuf.ByteString;
 
 import java.util.List;
 
@@ -34,6 +35,10 @@ public interface ProtocalProvider {
     List<RpcProto.UTXO> getUtxo(String address) throws IllegalAccessException;
 
     void getBlocks() throws IllegalAccessException;
+
+    void getBlockByHash(ByteString byteHash) throws IllegalAccessException;
+
+    void getBlockByHeight(long height) throws IllegalAccessException;
 
     void sendTransaction(TransactionProto.Transaction transaction) throws IllegalAccessException;
 

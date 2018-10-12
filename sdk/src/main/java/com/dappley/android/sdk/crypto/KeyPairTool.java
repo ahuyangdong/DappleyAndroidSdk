@@ -4,7 +4,14 @@ import com.dappley.android.sdk.util.Base64;
 
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
+import org.spongycastle.jce.ECNamedCurveTable;
+import org.spongycastle.jce.ECPointUtil;
 import org.spongycastle.jce.provider.BouncyCastleProvider;
+import org.spongycastle.jce.spec.ECNamedCurveSpec;
+import org.spongycastle.jce.spec.ECParameterSpec;
+import org.spongycastle.jce.spec.ECPrivateKeySpec;
+import org.spongycastle.jce.spec.ECPublicKeySpec;
+import org.spongycastle.math.ec.ECPoint;
 import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
@@ -17,6 +24,7 @@ import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Security;
+import java.security.interfaces.ECPublicKey;
 import java.security.spec.ECGenParameterSpec;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -70,6 +78,7 @@ public class KeyPairTool {
         return null;
     }
 
+
     public static ECKeyPair castToEcKeyPair(KeyPair keyPair) {
         BCECPrivateKey privateKey = (BCECPrivateKey) keyPair.getPrivate();
         BCECPublicKey publicKey = (BCECPublicKey) keyPair.getPublic();
@@ -114,6 +123,49 @@ public class KeyPairTool {
         KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
         PrivateKey privateKey = keyFactory.generatePrivate(x509KeySpec);
         return privateKey;
+    }
+
+    public static BCECPublicKey fromPubInteger(BigInteger pubKeyInteger) {
+        try {
+            KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM, BouncyCastleProvider.PROVIDER_NAME);
+            ECParameterSpec ecParameters = ECNamedCurveTable.getParameterSpec(STD_NAME);
+            ECNamedCurveSpec params  = new ECNamedCurveSpec(STD_NAME, ecParameters.getCurve(), ecParameters.getG(), ecParameters.getN());
+            byte[] pubKey = pubKeyInteger.toByteArray();
+            BigInteger x = new BigInteger(1, Arrays.copyOfRange(pubKey, 1, 33));
+            BigInteger y = new BigInteger(1, Arrays.copyOfRange(pubKey, 33, 65));
+            java.security.spec.ECPoint point = ECPointUtil.decodePoint(params.getCurve(), pubKey);
+            ECPoint ecPoint = ecParameters.getCurve().createPoint(x, y);
+            ECPublicKeySpec keySpec = new ECPublicKeySpec(ecPoint, ecParameters);
+            java.security.spec.ECPublicKeySpec publicKeySpec = new java.security.spec.ECPublicKeySpec(point, params);
+            X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(pubKey);
+//            BCECPublicKey prk = (BCECPublicKey) keyFactory.generatePublic(x509EncodedKeySpec);
+            BCECPublicKey prk = (BCECPublicKey) keyFactory.generatePublic(publicKeySpec);
+            return prk;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static BCECPrivateKey fromPrivInteger(BigInteger privKeyInteger) {
+        try {
+            KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM, BouncyCastleProvider.PROVIDER_NAME);
+            ECParameterSpec ecParameters = ECNamedCurveTable.getParameterSpec(STD_NAME);
+            ECPrivateKeySpec privateKeySpec = new ECPrivateKeySpec(privKeyInteger, ecParameters);
+            BCECPrivateKey prk = (BCECPrivateKey) keyFactory.generatePublic(privateKeySpec);
+            return prk;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

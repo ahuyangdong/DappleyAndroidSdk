@@ -3,6 +3,7 @@ package com.dappley.android.sdk.net;
 import android.content.Context;
 
 import com.dappley.android.sdk.config.Configuration;
+import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.RpcServiceGrpc;
 import com.dappley.android.sdk.protobuf.TransactionProto;
@@ -91,7 +92,7 @@ public class RpcProvider implements ProtocalProvider {
         RpcProto.GetBlockchainInfoRequest request = RpcProto.GetBlockchainInfoRequest.newBuilder()
                 .build();
         RpcProto.GetBlockchainInfoResponse response = getRpcServiceBlockingStub().rpcGetBlockchainInfo(request);
-        System.out.println("getBlockchainInfo blockHeight: " +response.getBlockHeight());
+        System.out.println("getBlockchainInfo blockHeight: " + response.getBlockHeight());
         ByteString byteString = response.getTailBlockHash();
         System.out.println(byteString);
     }
@@ -119,6 +120,30 @@ public class RpcProvider implements ProtocalProvider {
         RpcProto.GetBlocksResponse response = getRpcServiceBlockingStub().rpcGetBlocks(request);
         response.getBlocksList();
         System.out.println("getBlocks blockCount: " + response.getBlocksCount());
+    }
+
+    @Override
+    public void getBlockByHash(ByteString byteHash) throws IllegalAccessException {
+        Asserts.clientInit(channel);
+        Asserts.channalOpen(channel);
+        RpcProto.GetBlockByHashRequest request = RpcProto.GetBlockByHashRequest.newBuilder()
+                .setHash(byteHash)
+                .build();
+        RpcProto.GetBlockByHashResponse response = getRpcServiceBlockingStub().rpcGetBlockByHash(request);
+        BlockProto.Block block = response.getBlock();
+        System.out.println("getBlockByHash block: " + block);
+    }
+
+    @Override
+    public void getBlockByHeight(long height) throws IllegalAccessException {
+        Asserts.clientInit(channel);
+        Asserts.channalOpen(channel);
+        RpcProto.GetBlockByHeightRequest request = RpcProto.GetBlockByHeightRequest.newBuilder()
+                .setHeight(height)
+                .build();
+        RpcProto.GetBlockByHeightResponse response = getRpcServiceBlockingStub().rpcGetBlockByHeight(request);
+        BlockProto.Block block = response.getBlock();
+        System.out.println("getBlockByHeight block: " + block);
     }
 
     @Override

@@ -52,6 +52,7 @@ public class BlockManager {
                 .setTimestamp(1532392928)
                 .setHeight(0)
                 .build();
+        // TODO re-calculate height hash, see at block.go
         BlockProto.Block block = BlockProto.Block.newBuilder()
                 .setHeader(blockHeader)
                 .addTransactions(transaction)
