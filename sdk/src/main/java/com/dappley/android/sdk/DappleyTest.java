@@ -4,9 +4,11 @@ import android.content.Context;
 
 import com.dappley.android.sdk.chain.BlockManager;
 import com.dappley.android.sdk.config.Configuration;
+import com.dappley.android.sdk.crypto.Bip39;
 import com.dappley.android.sdk.crypto.EcCipher;
 import com.dappley.android.sdk.crypto.KeyPairTool;
 import com.dappley.android.sdk.db.BlockDB;
+import com.dappley.android.sdk.db.BlockDBMk;
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.RpcServiceGrpc;
@@ -15,6 +17,7 @@ import com.dappley.android.sdk.util.Base64;
 import com.dappley.android.sdk.util.ByteUtil;
 import com.dappley.android.sdk.util.HashUtil;
 import com.google.protobuf.ByteString;
+import com.tencent.mmkv.MMKV;
 
 import org.bouncycastle.crypto.generators.ECKeyPairGenerator;
 import org.bouncycastle.jce.ECNamedCurveTable;
@@ -112,22 +115,32 @@ public class DappleyTest {
 //        System.out.println(block.toString());
 
 //        testRecovery();
-        ByteString bytes = ByteString.copyFromUtf8("hello");
-        System.out.println(bytes.toStringUtf8());
+//        ByteString bytes = ByteString.copyFromUtf8("hello");
+//        System.out.println(bytes.toStringUtf8());
+
+
+    }
+
+    public static void testWord() {
+        Bip39.generateMnemonic();
     }
 
     public static void testDB(Context context) {
-        BlockDB blockDB = new BlockDB(context);
+        MMKV.initialize(context);
+        BlockDBMk blockDB = new BlockDBMk(context);
         blockDB.open();
         BlockProto.BlockHeader blockHeader = BlockProto.BlockHeader.newBuilder().setHash(ByteString.copyFromUtf8("testblock")).build();
         BlockProto.Block block = BlockProto.Block.newBuilder().setHeader(blockHeader).build();
-        boolean isSuccess = blockDB.save(block);
+//        boolean isSuccess = blockDB.saveBytes(block);
+//        boolean isSuccess = blockDB.save(block);
         System.out.println(block);
-        System.out.println(isSuccess);
+//        System.out.println(isSuccess);
 
         // read
-        block = blockDB.get("testblock");
-        System.out.println(block);
+//        byte[] bytes = blockDB.getBytes("testblock");
+        BlockProto.Block block1 = blockDB.get("testblock");
+//        System.out.println(new String(bytes));
+        System.out.println(block1);
     }
 
     public static void testRecovery() {

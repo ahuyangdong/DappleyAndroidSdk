@@ -47,7 +47,13 @@ public class MainActivity extends AppCompatActivity {
 //        String result = DappleyTest.testEncrypt();
 //        tvContent.setText(result);
 //        DappleyTest.testRecovery();
-        DappleyTest.testDB(this);
+//        DappleyTest.testDB(this);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                DappleyTest.testWord();
+            }
+        }).start();
     }
 
     @OnClick(R.id.btn_version)

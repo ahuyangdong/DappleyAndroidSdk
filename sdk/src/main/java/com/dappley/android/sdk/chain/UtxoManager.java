@@ -1,5 +1,7 @@
 package com.dappley.android.sdk.chain;
 
+import android.util.Log;
+
 import com.dappley.android.sdk.DappleyClient;
 import com.dappley.android.sdk.protobuf.RpcProto;
 
@@ -17,13 +19,14 @@ import java.util.Objects;
  * Utils to handle UTXO datas.
  */
 public class UtxoManager {
+    private static final String TAG = "UtxoManager";
 
     public static List<RpcProto.UTXO> getSpendableUtxos(String address, int amount) {
         try {
             List<RpcProto.UTXO> all = DappleyClient.getUtxo(address);
             return getSpendableUtxos(all, amount);
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            Log.e(TAG, "getSpendableUtxos: ", e);
         }
         return null;
     }

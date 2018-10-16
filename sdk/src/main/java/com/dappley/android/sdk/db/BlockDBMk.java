@@ -4,9 +4,11 @@ import android.content.Context;
 
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
 import com.snappydb.SnappydbException;
+import com.tencent.mmkv.MMKV;
 
 /**
  * Database for Block class.
@@ -14,7 +16,7 @@ import com.snappydb.SnappydbException;
  * <p>After read/write, remember to call <code>close()</code> to break-down the connection.</p>
  * <p>In batch operations, <code>open()</code> and <code>close()</code> should be called just one time.</p>
  */
-public class BlockDB {
+public class BlockDBMk {
     private static final String DB_NAME = "block";
     private Context context;
     private DB db;
@@ -23,7 +25,7 @@ public class BlockDB {
      * Constructor
      * @param context
      */
-    public BlockDB(Context context) {
+    public BlockDBMk(Context context) {
         this.context = context;
     }
 
@@ -31,27 +33,27 @@ public class BlockDB {
      * Open database connection
      */
     public void open() {
-        try {
-            db = DBFactory.open(context, DB_NAME);
-        } catch (SnappydbException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            db = DBFactory.open(context, DB_NAME);
+//        } catch (SnappydbException e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**
      * Close connection of database and release resources.
      */
     public void close() {
-        if (db == null) {
-            return;
-        }
-        try {
-            if (db.isOpen()) {
-                db.close();
-            }
-        } catch (SnappydbException e) {
-            e.printStackTrace();
-        }
+//        if (db == null) {
+//            return;
+//        }
+//        try {
+//            if (db.isOpen()) {
+//                db.close();
+//            }
+//        } catch (SnappydbException e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**
@@ -62,12 +64,15 @@ public class BlockDB {
     public boolean save(BlockProto.Block block) {
         boolean success = false;
         String key = block.getHeader().getHash().toStringUtf8();
-        try {
-            db.put(key, block);
-            success = true;
-        } catch (SnappydbException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            db.put(key, block);
+
+        MMKV mmkv = MMKV.mmkvWithID(DB_NAME);
+        mmkv.encode(key, block.toByteArray());
+        success = true;
+//        } catch (SnappydbException e) {
+//            e.printStackTrace();
+//        }
         return success;
     }
 
@@ -110,9 +115,14 @@ public class BlockDB {
      */
     public BlockProto.Block get(String hashString) {
         try {
-            BlockProto.Block block = db.getObject(hashString, BlockProto.Block.class);
+            MMKV mmkv = MMKV.mmkvWithID(DB_NAME);
+            byte[] bytes = mmkv.decodeBytes(hashString);
+            BlockProto.Block block = BlockProto.Block.parseFrom(bytes);
+//            BlockProto.Block block = db.getObject(hashString, BlockProto.Block.class);
             return block;
-        } catch (SnappydbException e) {
+//        } catch (SnappydbException e) {
+//            e.printStackTrace();
+        } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
         return null;

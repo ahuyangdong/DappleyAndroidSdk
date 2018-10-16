@@ -1,6 +1,7 @@
 package com.dappley.android.sdk.config;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.util.Properties;
  * SDK configuration values
  */
 public class Configuration {
+    private static final String TAG = "Configuration";
     private static Configuration configuration;
     /**
      * IP of remote RPC server
@@ -52,9 +54,9 @@ public class Configuration {
                 serverPort = 135;
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            Log.e(TAG, "init: ", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, "init: ", e);
         } finally {
             if (in != null) {
                 try {
