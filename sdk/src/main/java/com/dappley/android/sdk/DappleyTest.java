@@ -2,55 +2,28 @@ package com.dappley.android.sdk;
 
 import android.content.Context;
 
-import com.dappley.android.sdk.chain.BlockManager;
 import com.dappley.android.sdk.config.Configuration;
+import com.dappley.android.sdk.crypto.AesCipher;
 import com.dappley.android.sdk.crypto.Bip39;
 import com.dappley.android.sdk.crypto.EcCipher;
 import com.dappley.android.sdk.crypto.KeyPairTool;
-import com.dappley.android.sdk.db.BlockDB;
 import com.dappley.android.sdk.db.BlockDBMk;
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.RpcServiceGrpc;
-import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.Base64;
-import com.dappley.android.sdk.util.ByteUtil;
-import com.dappley.android.sdk.util.HashUtil;
 import com.google.protobuf.ByteString;
 import com.tencent.mmkv.MMKV;
 
-import org.bouncycastle.crypto.generators.ECKeyPairGenerator;
-import org.bouncycastle.jce.ECNamedCurveTable;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.jce.spec.ECParameterSpec;
-import org.bouncycastle.jce.spec.ECPublicKeySpec;
-import org.bouncycastle.math.ec.ECPoint;
-import org.bouncycastle.util.encoders.Hex;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
-import org.spongycastle.pqc.jcajce.provider.util.KeyUtil;
 import org.web3j.crypto.ECKeyPair;
-import org.web3j.crypto.Keys;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
-import java.security.InvalidKeyException;
-import java.security.KeyFactory;
 import java.security.KeyPair;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.Signature;
-import java.security.interfaces.ECPrivateKey;
-import java.security.interfaces.ECPublicKey;
 import java.util.Arrays;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -119,6 +92,14 @@ public class DappleyTest {
 //        System.out.println(bytes.toStringUtf8());
 
 
+    }
+
+    public static void testAes(){
+        String encoded = AesCipher.encryptToHex("I am the one.", "aesKey");
+        System.out.println(encoded);
+        String decoded = AesCipher.decryptFromHex(encoded, "aesKey");
+        System.out.println(decoded);
+        System.out.println(new String(AesCipher.decrypt(AesCipher.encrypt("I am the one.".getBytes(), "aesKey"),"aesKey")));
     }
 
     public static void testWord() {

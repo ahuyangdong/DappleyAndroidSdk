@@ -48,12 +48,13 @@ public class MainActivity extends AppCompatActivity {
 //        tvContent.setText(result);
 //        DappleyTest.testRecovery();
 //        DappleyTest.testDB(this);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                DappleyTest.testWord();
-            }
-        }).start();
+        DappleyTest.testAes();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                DappleyTest.testWord();
+//            }
+//        }).start();
     }
 
     @OnClick(R.id.btn_version)
