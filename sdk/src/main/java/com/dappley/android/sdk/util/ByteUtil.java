@@ -2,6 +2,8 @@ package com.dappley.android.sdk.util;
 
 import com.google.protobuf.ByteString;
 
+import java.math.BigInteger;
+
 /**
  * Provides several methods about byte calculate.
  */
@@ -34,4 +36,11 @@ public class ByteUtil {
         return bs;
     }
 
+    public static byte[] fromLong(long value) {
+        return new BigInteger(String.valueOf(value)).toByteArray();
+    }
+
+    public static byte[] fromInt(int value) {
+        return new BigInteger(String.valueOf(value)).toByteArray();
+    }
 }

@@ -5,6 +5,7 @@ import com.dappley.android.sdk.crypto.Sha3Digest;
 import com.dappley.android.sdk.crypto.ShaDigest;
 
 import java.math.BigInteger;
+import java.security.PrivateKey;
 import java.security.PublicKey;
 
 /**
@@ -42,6 +43,29 @@ public class HashUtil {
     public static byte[] getPubKeyHash(BigInteger pubInteger) {
         byte[] pubBytes = pubInteger.toByteArray();
         return getPubKeyHash(pubBytes);
+    }
+
+    /**
+     * Recovery pubKeyHash value from address.
+     * @param address wallet address in Base58 format
+     * @return byte[] pubKeyHash
+     */
+    public static byte[] getPubKeyHash(String address) {
+        // decode address in Base58 format
+        byte[] addrs = Base58.decode(address);
+        // pubKeyHash[1 : len(pubKeyHash)-4]
+        byte[] pubKeyHash = ByteUtil.slice(addrs, 1, addrs.length - 4);
+        return pubKeyHash;
+    }
+
+    public static byte[] fromECDSAPrivateKey(BigInteger privateKey){
+        // TODO privKeyHash = secp256k1.FromECDSAPrivateKey(&privKey);
+        return new byte[]{};
+    }
+
+    public static byte[] secp256k1Sign(byte[] data, byte[] privKeyHash){
+        // TODO secp256k1.Sign(txCopy.ID, privData)
+        return new byte[]{};
     }
 
     /**

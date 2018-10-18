@@ -1,12 +1,16 @@
 package com.dappley.android.sdk.chain;
 
+import com.dappley.android.sdk.crypto.ShaDigest;
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.TransactionProto;
 import com.dappley.android.sdk.util.ByteUtil;
+import com.dappley.android.sdk.util.HashUtil;
 import com.google.protobuf.ByteString;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utils to handle Block datas.
@@ -31,7 +35,7 @@ public class BlockManager {
 
         TransactionProto.TXOutput txOutput = TransactionProto.TXOutput.newBuilder()
                 .setValue(ByteString.copyFrom(new BigInteger(SUBSIDY).toByteArray()))
-                .setPubKeyHash(TransactionManager.getTransactionPubKeyHash(GENESIS_ADDRESS))
+                .setPubKeyHash(ByteString.copyFrom(HashUtil.getPubKeyHash(GENESIS_ADDRESS)))
                 .build();
 
         TransactionProto.Transaction.Builder txBuilder = TransactionProto.Transaction.newBuilder()
@@ -43,20 +47,40 @@ public class BlockManager {
         txBuilder.setID(TransactionManager.newId(txBuilder));
 
         TransactionProto.Transaction transaction = txBuilder.build();
+        List<TransactionProto.Transaction> transactions = new ArrayList<>(1);
+        transactions.add(transaction);
 
-        BlockProto.BlockHeader blockHeader = BlockProto.BlockHeader.newBuilder()
+        BlockProto.BlockHeader.Builder blockHeaderBuilder = BlockProto.BlockHeader.newBuilder()
                 .setHash(ByteString.copyFrom(new byte[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}))
                 .setPrevhash(ByteUtil.EMPTY_BYTE_STRING)
                 .setNonce(0)
                 //July 23,2018 17:42 PST
                 .setTimestamp(1532392928)
-                .setHeight(0)
-                .build();
-        // TODO re-calculate height hash, see at block.go
-        BlockProto.Block block = BlockProto.Block.newBuilder()
-                .setHeader(blockHeader)
-                .addTransactions(transaction)
-                .build();
+                .setHeight(0);
+        blockHeaderBuilder.setHash(ByteString.copyFrom(calculateHash(blockHeaderBuilder, transactions)));
+
+        // build block
+        BlockProto.Block.Builder blockBuilder = BlockProto.Block.newBuilder()
+                .setHeader(blockHeaderBuilder.build())
+                .addTransactions(transaction);
+
+        BlockProto.Block block = blockBuilder.build();
         return block;
     }
+
+    public static byte[] calculateHash(BlockProto.BlockHeader.Builder blockHeaderBuilder, List<TransactionProto.Transaction> transactions) {
+        return calculateHashWithoutNonce(blockHeaderBuilder, transactions);
+    }
+
+    public static byte[] calculateHashWithoutNonce(BlockProto.BlockHeader.Builder blockHeaderBuilder, List<TransactionProto.Transaction> transactions) {
+        byte[] prevHash = blockHeaderBuilder.getPrevhash().toByteArray();
+        byte[] txHash = TransactionManager.hashTransactions(transactions);
+        // TODO confirm IntToHex method is right
+        byte[] timeHash = ByteUtil.fromLong(blockHeaderBuilder.getTimestamp());
+        // concat prevHash/txHash/timeHash
+        byte[] data = ByteUtil.concat(prevHash, txHash);
+        data = ByteUtil.concat(data, timeHash);
+        return ShaDigest.sha256(data);
+    }
+
 }
